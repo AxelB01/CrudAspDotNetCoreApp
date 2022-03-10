@@ -1,0 +1,50 @@
+﻿@page
+@model CrudAspDotNetCoreApp.Pages.Productos.IndexModel
+
+
+
+
+    <div class="container">
+
+        <h1 class="display-4">Productos</h1>
+
+        <a asp-page="CreateProduct">Agregar nuevo producto</a>
+
+        <table class="table table-sm table-striped mt-4">
+            <thead>
+                <tr>
+                    <th class="col-sm-1">
+                        Código
+                    </th>
+                    <th class="col-sm-2">
+                        Producto
+                    </th>
+                    <th class="col-sm-2">
+                        Categoría
+                    </th>
+                    <th class="col-sm-2">
+                        Precio de compra
+                    </th>
+                    <th class="col-sm-3">
+                        Precio de venta
+                    </th>
+                    <th class="col-sm-2"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Productos)
+                {
+                    <tr>
+                        <td>@item.IdProducto</td>
+                        <td>@item.Nombre</td>
+                        <td>@item.Categoria</td>
+                        <td>RD$ @String.Format("{0:n2}", item.PrecioCompra)</td>
+                        <td>RD$ @String.Format("{0:n2}", item.PrecioVenta)</td>
+                        <td>
+                            <a asp-page="EditProduct" asp-route-idProducto="@item.IdProducto">Editar</a> | <a asp-page="DeleteProduct" asp-route-idProducto="@item.IdProducto">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>

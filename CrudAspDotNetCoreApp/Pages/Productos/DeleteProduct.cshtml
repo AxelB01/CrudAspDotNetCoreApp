@@ -1,0 +1,60 @@
+﻿@page
+@model CrudAspDotNetCoreApp.Pages.Productos.DeleteProductModel
+@{
+}
+
+<div class="container">
+
+    <h1 class="display-4">Eliminar producto</h1>
+
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div class="alert-danger alert-danger">
+            @Model.ErrorMessage
+        </div>
+    }
+
+
+    <div class="form-group">
+        <dl class="row">
+            <dt class="col-sm-3">Código</dt>
+            <dd class="col-sm-9">@Model.Producto.IdProducto</dd>
+            <dt class="col-sm-3">Nombre</dt>
+            <dd class="col-sm-9">@Model.Producto.Nombre</dd>
+            <dt class="col-sm-3">Categoría</dt>
+            <dd class="col-sm-9">@Model.Producto.Categoria</dd>
+            <dt class="col-sm-3">Precio de compra</dt>
+            <dd class="col-sm-9">RD$ @string.Format("{0:n2}", Model.Producto.PrecioCompra)</dd>
+            <dt class="col-sm-3">Precio de venta</dt>
+            <dd class="col-sm-9">RD$ @string.Format("{0:n2}", Model.Producto.PrecioVenta)</dd>
+            <dt class="col-sm-3">Comentario</dt>
+            <dd class="col-sm-9">
+                @{
+                    if (string.IsNullOrEmpty(Model.Producto.Comentario))
+                    {
+                        <p>N/D</p>
+                    }
+                    else
+                    {
+                        @Model.Producto.Comentario;
+                    }
+            }
+        </dd>
+    </dl>
+</div>
+
+<form method="post">
+    <div>
+        <input asp-for="Producto.IdProducto" type="hidden"/>
+        <p>
+            ¿Seguro que quieres eliminar este producto?
+        </p>
+        <p>
+            <button type="submit" class="btn btn-primary">
+                Eliminar
+            </button>
+        </p>
+
+    </div>
+</form>
+</div>
